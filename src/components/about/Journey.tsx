@@ -1,5 +1,5 @@
 
-import { Flag, Clock, Book, Award } from "lucide-react";
+import { Flag, Clock, Book, Award, Lightbulb } from "lucide-react";
 import AnimatedCard from "@/components/ui/AnimatedCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
