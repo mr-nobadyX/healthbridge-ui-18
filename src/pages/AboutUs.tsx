@@ -7,9 +7,7 @@ import MissionVision from "@/components/about/MissionVision";
 import Journey from "@/components/about/Journey";
 import Achievements from "@/components/about/Achievements";
 import Leadership from "@/components/about/Leadership";
-import WhyChooseUs from "@/components/about/WhyChooseUs";
 import AboutTestimonials from "@/components/about/AboutTestimonials";
-import Community from "@/components/about/Community";
 import AboutCTA from "@/components/about/AboutCTA";
 
 const AboutUs = () => {
@@ -26,9 +24,7 @@ const AboutUs = () => {
         <Journey />
         <Achievements />
         <Leadership />
-        <WhyChooseUs />
         <AboutTestimonials />
-        <Community />
         <AboutCTA />
       </main>
       <Footer />

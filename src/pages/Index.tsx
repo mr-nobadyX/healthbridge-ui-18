@@ -7,6 +7,7 @@ import Services from "@/components/home/Services";
 import Doctors from "@/components/home/Doctors";
 import Testimonials from "@/components/home/Testimonials";
 import EmergencyContact from "@/components/home/EmergencyContact";
+import WhyChooseUs from "@/components/about/WhyChooseUs";
 
 const Index = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <Services />
+        <WhyChooseUs />
         <Doctors />
         <Testimonials />
         <EmergencyContact />
