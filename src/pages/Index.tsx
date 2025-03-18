@@ -8,6 +8,7 @@ import Doctors from "@/components/home/Doctors";
 import Testimonials from "@/components/home/Testimonials";
 import EmergencyContact from "@/components/home/EmergencyContact";
 import WhyChooseUs from "@/components/about/WhyChooseUs";
+import HomeFAQ from "@/components/home/HomeFAQ";
 
 const Index = () => {
   useEffect(() => {
@@ -22,7 +23,7 @@ const Index = () => {
         <Services />
         <WhyChooseUs />
         <Doctors />
-        <Testimonials />
+        <HomeFAQ />
         <EmergencyContact />
       </main>
       <Footer />

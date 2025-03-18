@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -9,10 +8,7 @@ const navLinks = [
   { name: "About Us", href: "/about" },
   { name: "Doctors", href: "/doctors" },
   { name: "Services", href: "/services" },
-  { name: "Appointments", href: "/appointments" },
-  { name: "FAQs", href: "/faqs" },
-  { name: "Testimonials", href: "/testimonials" },
-  { name: "News", href: "/news" },
+  { name: "Facilities", href: "/facilities" },
   { name: "Contact", href: "/contact" },
 ];
 
