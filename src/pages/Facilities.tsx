@@ -1,8 +1,7 @@
-
 import { useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Building2, Wifi, Bed, Utensils, Parking, FirstAid } from "lucide-react";
+import { Building2, Wifi, Bed, Utensils, ParkingSquare, Stethoscope } from "lucide-react";
 
 const facilities = [
   {
@@ -26,12 +25,12 @@ const facilities = [
     description: "Nutritious meals prepared under strict hygiene standards"
   },
   {
-    icon: Parking,
+    icon: ParkingSquare,
     title: "Parking Space",
     description: "Ample parking space for patients and visitors"
   },
   {
-    icon: FirstAid,
+    icon: Stethoscope,
     title: "24/7 Pharmacy",
     description: "Round-the-clock pharmacy services for emergencies"
   }
