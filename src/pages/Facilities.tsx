@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -15,7 +14,7 @@ import {
   ActivitySquare,
   Baby,
   Heart,
-  FirstAid,
+  Ambulance,
   Workflow
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,7 +23,7 @@ import AnimatedCard from "@/components/ui/AnimatedCard";
 // Facility data
 const facilities = [
   {
-    icon: FirstAid,
+    icon: Ambulance,
     title: "Emergency & Trauma Care",
     description: "24/7 emergency services with specialized medical teams for critical situations",
     image: "/facility-emergency.jpg"
