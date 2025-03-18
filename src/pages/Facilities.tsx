@@ -15,7 +15,7 @@ import {
   ActivitySquare,
   Baby,
   Heart,
-  Medical,
+  FirstAid,
   Workflow
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ import AnimatedCard from "@/components/ui/AnimatedCard";
 // Facility data
 const facilities = [
   {
-    icon: Medical,
+    icon: FirstAid,
     title: "Emergency & Trauma Care",
     description: "24/7 emergency services with specialized medical teams for critical situations",
     image: "/facility-emergency.jpg"
