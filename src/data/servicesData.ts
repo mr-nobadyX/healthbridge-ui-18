@@ -1,4 +1,3 @@
-
 import { Brain, Heart, Clock, Baby, Stethoscope, Activity } from "lucide-react";
 
 // Service details type definition
@@ -246,5 +245,82 @@ export const servicesData: Record<string, ServiceDetail> = {
       "Transplant surgery"
     ],
     relatedServices: ["emergency-care", "cardiology", "neurology"]
+  },
+  "general-medicine": {
+    id: "general-medicine",
+    title: "General Medicine",
+    shortDescription: "Primary care services with expert physicians for routine check-ups and chronic disease management.",
+    heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    icon: Stethoscope,
+    detailedDescription: "Our General Medicine department is the cornerstone of our healthcare services, providing comprehensive primary care for patients of all ages. Our physicians are trained to diagnose and treat a wide range of conditions, from acute illnesses to chronic diseases. We focus on preventive care, health maintenance, and coordinating with specialists when needed to ensure you receive complete, integrated healthcare.",
+    keyHighlights: [
+      {
+        title: "Comprehensive Primary Care",
+        description: "Complete healthcare services for individuals and families of all ages"
+      },
+      {
+        title: "Chronic Disease Management",
+        description: "Specialized programs for diabetes, hypertension, asthma, and other chronic conditions"
+      },
+      {
+        title: "Preventive Medicine",
+        description: "Health screenings, immunizations, and lifestyle counseling to prevent illness"
+      },
+      {
+        title: "Coordinated Care",
+        description: "Seamless referrals and communication with specialists for complex conditions"
+      }
+    ],
+    targetAudience: "Our general medicine services are designed for patients of all ages seeking primary care, preventive services, management of chronic conditions, or treatment for common illnesses. Whether you need a routine check-up, are managing an ongoing health condition, or require diagnosis and treatment for a new health concern, our general medicine team provides personalized, patient-centered care.",
+    procedures: [
+      "Comprehensive physical examinations",
+      "Diagnostic testing and interpretation",
+      "Chronic disease monitoring and management",
+      "Minor procedures and treatments",
+      "Health risk assessments",
+      "Preventive screenings",
+      "Immunizations for all age groups",
+      "Health education and counseling"
+    ],
+    relatedServices: ["general-checkups", "emergency-care", "cardiology"]
+  },
+  "orthopedics": {
+    id: "orthopedics",
+    title: "Orthopedics",
+    shortDescription: "Comprehensive care for bones, joints, muscles, and sports injuries with surgical and non-surgical options.",
+    heroImage: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    icon: Activity,
+    detailedDescription: "Our Orthopedics department specializes in the diagnosis, treatment, rehabilitation, and prevention of injuries and disorders of the musculoskeletal system. From sports injuries and fractures to joint replacements and spine surgery, our orthopedic specialists use advanced techniques and technologies to restore function, reduce pain, and improve quality of life. We offer both surgical and non-surgical approaches tailored to each patient's unique needs.",
+    keyHighlights: [
+      {
+        title: "Minimally Invasive Surgery",
+        description: "Advanced techniques with smaller incisions, less pain, and faster recovery"
+      },
+      {
+        title: "Sports Medicine",
+        description: "Specialized care for athletes and active individuals with sport-related injuries"
+      },
+      {
+        title: "Joint Replacement",
+        description: "State-of-the-art artificial joint options with personalized surgical approaches"
+      },
+      {
+        title: "Comprehensive Rehabilitation",
+        description: "Integrated physical therapy and rehabilitation services for optimal recovery"
+      }
+    ],
+    targetAudience: "Our orthopedic services are ideal for patients experiencing pain, stiffness, or reduced mobility in bones, joints, or muscles. This includes individuals with sports injuries, arthritis, fractures, sprains, tendonitis, and other musculoskeletal conditions. We also provide care for those requiring joint replacements, spine surgery, or reconstructive procedures, as well as athletes seeking to improve performance and prevent injuries.",
+    procedures: [
+      "Joint arthroscopy and reconstruction",
+      "Total and partial joint replacement",
+      "Fracture repair and management",
+      "Ligament and tendon repair",
+      "Spinal surgery and therapy",
+      "Sports injury treatment",
+      "Cartilage restoration",
+      "Orthopedic trauma care",
+      "Physical and occupational therapy"
+    ],
+    relatedServices: ["specialized-surgery", "emergency-care", "general-checkups"]
   }
 };

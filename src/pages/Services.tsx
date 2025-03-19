@@ -70,37 +70,43 @@ const Services = () => {
                   icon: <Stethoscope />,
                   title: "General Medicine",
                   description: "Primary care services with expert physicians for routine check-ups and chronic disease management.",
-                  delay: 100
+                  delay: 100,
+                  id: "general-medicine"
                 },
                 {
                   icon: <Heart />,
                   title: "Cardiology",
                   description: "Advanced heart care treatments including diagnostic tests, interventions, and cardiac rehabilitation.",
-                  delay: 200
+                  delay: 200,
+                  id: "cardiology"
                 },
                 {
                   icon: <Activity />,
                   title: "Orthopedics",
                   description: "Comprehensive care for bones, joints, muscles, and sports injuries with surgical and non-surgical options.",
-                  delay: 300
+                  delay: 300,
+                  id: "orthopedics"
                 },
                 {
                   icon: <Baby />,
                   title: "Pediatrics",
                   description: "Specialized healthcare for infants, children, and adolescents in a child-friendly environment.",
-                  delay: 400
+                  delay: 400,
+                  id: "pediatrics"
                 },
                 {
                   icon: <Brain />,
                   title: "Neurology",
                   description: "Expert diagnosis and treatment of conditions affecting the brain, spinal cord, and nervous system.",
-                  delay: 500
+                  delay: 500,
+                  id: "neurology"
                 },
                 {
                   icon: <Clock />,
                   title: "Emergency Care",
                   description: "24/7 critical medical assistance with rapid response teams for urgent health concerns.",
-                  delay: 600
+                  delay: 600,
+                  id: "emergency-care"
                 }
               ].map((service, index) => (
                 <AnimatedCard key={index} delay={service.delay} className="group">
@@ -111,7 +117,7 @@ const Services = () => {
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                     <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
                     <Link 
-                      to={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      to={`/services/${service.id}`}
                       className="text-primary-600 font-medium inline-flex items-center group-hover:text-primary-700 transition-colors"
                     >
                       Learn more 

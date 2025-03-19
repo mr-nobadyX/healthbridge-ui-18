@@ -33,16 +33,16 @@ const services = [
     delay: 400
   },
   {
-    id: "general-checkups",
-    title: "General Checkups",
-    description: "Routine health assessments and preventive care for patients of all ages.",
+    id: "general-medicine",
+    title: "General Medicine",
+    description: "Primary care services with expert physicians for routine check-ups and chronic disease management.",
     icon: Stethoscope,
     delay: 500
   },
   {
-    id: "specialized-surgery",
-    title: "Specialized Surgery",
-    description: "Advanced surgical procedures using the latest techniques and technology.",
+    id: "orthopedics",
+    title: "Orthopedics",
+    description: "Comprehensive care for bones, joints, muscles, and sports injuries with surgical and non-surgical options.",
     icon: Activity,
     delay: 600
   }
