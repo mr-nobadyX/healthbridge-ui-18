@@ -26,13 +26,8 @@ const App = () => (
           <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           
-          {/* Individual service routes */}
-          <Route path="/services/emergency-care" element={<SingleService />} />
-          <Route path="/services/cardiology" element={<SingleService />} />
-          <Route path="/services/neurology" element={<SingleService />} />
-          <Route path="/services/pediatrics" element={<SingleService />} />
-          <Route path="/services/general-checkups" element={<SingleService />} />
-          <Route path="/services/specialized-surgery" element={<SingleService />} />
+          {/* Dynamic service route will match any service ID */}
+          <Route path="/services/*" element={<SingleService />} />
           
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/facilities" element={<Facilities />} />
