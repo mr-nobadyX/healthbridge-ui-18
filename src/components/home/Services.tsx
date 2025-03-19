@@ -5,36 +5,42 @@ import AnimatedCard from "../ui/AnimatedCard";
 
 const services = [
   {
+    id: "emergency-care",
     title: "Emergency Care",
     description: "24/7 emergency services with rapid response teams for critical situations.",
     icon: Clock,
     delay: 100
   },
   {
+    id: "cardiology",
     title: "Cardiology",
     description: "Comprehensive heart care from prevention to advanced treatments and surgery.",
     icon: Heart,
     delay: 200
   },
   {
+    id: "neurology",
     title: "Neurology",
     description: "Expert diagnosis and treatment of conditions affecting the nervous system.",
     icon: Brain,
     delay: 300
   },
   {
+    id: "pediatrics",
     title: "Pediatrics",
     description: "Specialized care for children from newborns to adolescents in a family-friendly environment.",
     icon: Baby,
     delay: 400
   },
   {
+    id: "general-checkups",
     title: "General Checkups",
     description: "Routine health assessments and preventive care for patients of all ages.",
     icon: Stethoscope,
     delay: 500
   },
   {
+    id: "specialized-surgery",
     title: "Specialized Surgery",
     description: "Advanced surgical procedures using the latest techniques and technology.",
     icon: Activity,
@@ -65,7 +71,7 @@ const Services = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
                 <Link 
-                  to="/services" 
+                  to={`/services/${service.id}`} 
                   className="text-primary-600 font-medium inline-flex items-center group-hover:text-primary-700 transition-colors"
                 >
                   Learn more 
