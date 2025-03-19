@@ -1,11 +1,12 @@
 
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Stethoscope, Microscope, Heart, ArrowRight, Star, Clock, Users, FileText, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedCard from "@/components/ui/AnimatedCard";
+import ProgressSteps from "@/components/ui/ProgressSteps";
 import {
   Carousel,
   CarouselContent,
@@ -13,21 +14,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 // Service features
 const serviceFeatures = [
   {
-    icon: <Stethoscope className="h-10 w-10" />,
+    icon: <Stethoscope className="h-10 w-10 text-primary-600" />,
     title: "Expert Doctors",
     description: "Our team of specialists have years of experience and are leaders in their respective fields"
   },
   {
-    icon: <Microscope className="h-10 w-10" />,
+    icon: <Microscope className="h-10 w-10 text-primary-600" />,
     title: "Advanced Equipment",
     description: "State-of-the-art technology ensuring precise diagnosis and effective treatment"
   },
   {
-    icon: <Heart className="h-10 w-10" />,
+    icon: <Heart className="h-10 w-10 text-primary-600" />,
     title: "Personalized Care",
     description: "Tailored treatment plans designed specifically for your unique healthcare needs"
   }
@@ -107,8 +110,20 @@ const relatedServices = [
 ];
 
 const SingleService = () => {
+  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
+  const autoplayOptions = { delay: 4000, stopOnInteraction: false };
+  const [testimonialCarouselRef, testimonialCarouselApi] = useEmblaCarousel({ loop: true }, [Autoplay(autoplayOptions)]);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveJourneyStep((prev) => (prev === patientJourney.length - 1 ? 0 : prev + 1));
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -155,8 +170,8 @@ const SingleService = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {serviceFeatures.map((feature, index) => (
                 <AnimatedCard key={index} delay={index * 100} className="group">
-                  <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col items-center text-center hover:-translate-y-1">
-                    <div className="bg-primary-50 rounded-full p-4 mb-4">
+                  <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col items-center text-center hover:-translate-y-1 group-hover:border-primary-300">
+                    <div className="bg-primary-50 rounded-full p-4 mb-4 group-hover:bg-primary-100 transition-colors">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
@@ -169,7 +184,7 @@ const SingleService = () => {
         </section>
 
         {/* Patient Journey */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gradient-to-b from-white to-blue-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedCard className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Patient Journey</h2>
@@ -178,18 +193,26 @@ const SingleService = () => {
               </p>
             </AnimatedCard>
 
-            <div className="mt-12 relative">
+            <div className="mb-8">
+              <ProgressSteps 
+                steps={patientJourney.length} 
+                currentStep={activeJourneyStep} 
+                className="max-w-4xl mx-auto"
+              />
+            </div>
+
+            <div className="mt-6 relative">
               <Carousel className="w-full">
                 <CarouselContent>
                   {patientJourney.map((step, index) => (
                     <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
                       <div className="p-1">
-                        <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6 h-full">
+                        <div className={`rounded-lg border ${index === activeJourneyStep ? 'bg-blue-50 border-primary-200' : 'bg-card'} text-card-foreground shadow-sm p-6 h-full transition-all duration-300`}>
                           <div className="flex flex-col items-center text-center">
-                            <div className="bg-primary-100 text-primary-700 rounded-full h-12 w-12 flex items-center justify-center mb-4">
+                            <div className={`${index === activeJourneyStep ? 'bg-primary-200 text-primary-700' : 'bg-primary-100 text-primary-700'} rounded-full h-12 w-12 flex items-center justify-center mb-4 transition-colors`}>
                               {step.icon}
                             </div>
-                            <div className="text-xl font-bold text-primary-600 mb-1">Step {index + 1}</div>
+                            <div className={`text-xl font-bold ${index === activeJourneyStep ? 'text-primary-600' : 'text-primary-500'} mb-1`}>Step {index + 1}</div>
                             <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
                             <p className="text-sm text-gray-500">{step.description}</p>
                           </div>
@@ -215,42 +238,46 @@ const SingleService = () => {
               </p>
             </AnimatedCard>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <AnimatedCard key={index} delay={index * 150} className="h-full">
-                  <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-md h-full flex flex-col">
-                    <div className="flex items-center mb-4">
-                      <div className="w-14 h-14 rounded-full overflow-hidden mr-4">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">{testimonial.name}</h3>
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`h-4 w-4 ${
-                                i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
-                              }`}
+            <div className="overflow-hidden" ref={testimonialCarouselRef}>
+              <div className="flex">
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="flex-shrink-0 flex-grow-0 w-full md:w-1/3 px-4">
+                    <AnimatedCard delay={index * 150} className="h-full">
+                      <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-md h-full flex flex-col transform transition-transform hover:scale-[1.02] hover:shadow-lg">
+                        <div className="flex items-center mb-4">
+                          <div className="w-14 h-14 rounded-full overflow-hidden mr-4">
+                            <img
+                              src={testimonial.image}
+                              alt={testimonial.name}
+                              className="w-full h-full object-cover"
                             />
-                          ))}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-gray-900">{testimonial.name}</h3>
+                            <div className="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`h-4 w-4 ${
+                                    i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
                         </div>
+                        <p className="text-gray-600 italic flex-grow">"{testimonial.text}"</p>
                       </div>
-                    </div>
-                    <p className="text-gray-600 italic flex-grow">"{testimonial.text}"</p>
+                    </AnimatedCard>
                   </div>
-                </AnimatedCard>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Related Services */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-blue-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedCard className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Related Services</h2>
@@ -264,7 +291,7 @@ const SingleService = () => {
                 <AnimatedCard key={index} delay={index * 100}>
                   <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
                     <div className="p-6">
-                      <div className="bg-primary-50 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4">
+                      <div className="bg-primary-50 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
                         {service.icon}
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
