@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import SingleService from "./pages/SingleService";
 import DoctorProfile from "./pages/DoctorProfile";
+import MinimalistDoctorProfile from "./pages/MinimalistDoctorProfile";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/doctors/:doctorId" element={<DoctorProfile />} />
+          <Route path="/doctors/minimalist" element={<MinimalistDoctorProfile />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
