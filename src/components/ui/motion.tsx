@@ -6,7 +6,7 @@ interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
   initial?: Record<string, any>;
   animate?: Record<string, any>;
   transition?: Record<string, any>;
-  children: React.ReactNode;
+  children?: React.ReactNode; // Changed from required to optional
 }
 
 export const motion = {
