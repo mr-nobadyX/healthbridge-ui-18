@@ -108,163 +108,100 @@ const DoctorProfile = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <section className="relative min-h-[90vh] w-full mt-16 overflow-hidden bg-gradient-to-br from-blue-50 to-white">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[65%] h-full bg-primary-600 skew-x-[-12deg] origin-top-right transform -translate-x-32"></div>
-          <div className="absolute bottom-0 left-0 w-2/3 h-24 bg-primary-100 skew-x-[-12deg] origin-bottom-left"></div>
-        </div>
-        
-        <div className="absolute inset-0 opacity-10 z-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full">
-            <div className="w-full h-full opacity-15">
-              {[...Array(10)].map((_, i) => (
-                <div 
-                  key={i}
-                  className="absolute rounded-full bg-white"
-                  style={{
-                    width: `${Math.random() * 300 + 50}px`,
-                    height: `${Math.random() * 300 + 50}px`,
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                    opacity: 0.2
-                  }}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 md:px-8 h-full flex flex-col justify-center py-12 lg:py-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
+      <section className="pt-32 pb-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
-            <div className="lg:col-span-6 z-10">
+            <div className="order-2 lg:order-1">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
+                transition={{ duration: 0.5 }}
                 className="space-y-6"
               >
-                <div className="inline-block relative">
-                  <span className="absolute -left-4 -top-4 w-12 h-12 bg-primary-100 rounded-full"></span>
-                  <Badge variant="secondary" className="relative z-10 text-primary-700 font-semibold py-2 px-4 text-sm">
-                    {doctor.specialty} Specialist
-                  </Badge>
-                </div>
+                <Badge variant="minimal" className="py-1.5 px-3">
+                  {doctor.specialty}
+                </Badge>
                 
-                <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight relative">
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                   {doctor.name}
-                  <span className="absolute -top-6 -left-6 text-9xl text-primary-50 font-bold z-[-1] opacity-80">Dr</span>
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-primary-700">
+                <p className="text-xl text-gray-600">
                   {doctor.title}
                 </p>
                 
                 <div className="max-w-lg">
-                  <p className="text-gray-700 text-lg">
+                  <p className="text-gray-700">
                     {doctor.bio.split('.')[0] + '.'}
                   </p>
                 </div>
                 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
-                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
-                    <div className="p-2 rounded-full bg-primary-50">
-                      <Star size={24} className="text-yellow-500" />
-                    </div>
-                    <p className="text-2xl font-bold mt-2">{doctor.rating}</p>
-                    <p className="text-sm text-gray-500">Rating</p>
+                  <div className="p-4 rounded-lg border border-gray-100 flex flex-col items-center">
+                    <Star size={20} className="text-yellow-500 mb-1" />
+                    <p className="text-xl font-bold">{doctor.rating}</p>
+                    <p className="text-xs text-gray-500">Rating</p>
                   </div>
                   
-                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
-                    <div className="p-2 rounded-full bg-primary-50">
-                      <User size={24} className="text-primary-600" />
-                    </div>
-                    <p className="text-2xl font-bold mt-2">5K+</p>
-                    <p className="text-sm text-gray-500">Patients</p>
+                  <div className="p-4 rounded-lg border border-gray-100 flex flex-col items-center">
+                    <User size={20} className="text-gray-600 mb-1" />
+                    <p className="text-xl font-bold">5K+</p>
+                    <p className="text-xs text-gray-500">Patients</p>
                   </div>
                   
-                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
-                    <div className="p-2 rounded-full bg-primary-50">
-                      <Award size={24} className="text-primary-600" />
-                    </div>
-                    <p className="text-2xl font-bold mt-2">{doctor.awards.length}</p>
-                    <p className="text-sm text-gray-500">Awards</p>
+                  <div className="p-4 rounded-lg border border-gray-100 flex flex-col items-center">
+                    <Award size={20} className="text-gray-600 mb-1" />
+                    <p className="text-xl font-bold">{doctor.awards.length}</p>
+                    <p className="text-xs text-gray-500">Awards</p>
                   </div>
                   
-                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
-                    <div className="p-2 rounded-full bg-primary-50">
-                      <Stethoscope size={24} className="text-primary-600" />
-                    </div>
-                    <p className="text-2xl font-bold mt-2">{doctor.experience.replace('+', '')}</p>
-                    <p className="text-sm text-gray-500">Years</p>
+                  <div className="p-4 rounded-lg border border-gray-100 flex flex-col items-center">
+                    <Stethoscope size={20} className="text-gray-600 mb-1" />
+                    <p className="text-xl font-bold">{doctor.experience.replace('+', '')}</p>
+                    <p className="text-xs text-gray-500">Years</p>
                   </div>
                 </div>
                 
                 <div className="flex flex-wrap gap-4 mt-6">
-                  <Button size="lg" className="gap-2 rounded-full px-8" asChild>
+                  <Button size="lg" asChild>
                     <Link to="/appointments">
-                      <CalendarIcon className="mr-1" size={20} />
+                      <CalendarIcon className="mr-2" size={18} />
                       Book Appointment
                     </Link>
                   </Button>
-                  <Button variant="outline" className="border-primary-200 text-primary-700 hover:bg-primary-50 gap-2 rounded-full px-8">
-                    <a href="#about">Doctor Profile</a>
-                    <ArrowRight size={18} />
+                  <Button variant="outline" className="border-gray-200">
+                    <a href="#about">View Profile</a>
+                    <ArrowRight size={16} className="ml-2" />
                   </Button>
                 </div>
               </motion.div>
             </div>
             
-            <div className="lg:col-span-6 z-10 flex justify-center lg:justify-end">
+            <div className="order-1 lg:order-2 flex justify-center">
               <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
                 className="relative"
               >
-                <div className="relative z-10">
-                  <div className="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden border-8 border-white shadow-xl relative z-10">
-                    <img 
-                      src={doctor.image} 
-                      alt={doctor.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-100 rounded-full z-0"></div>
-                  <div className="absolute -top-6 -left-6 w-16 h-16 bg-primary-200 rounded-full z-0"></div>
-                  
-                  <div className="absolute -top-4 right-0 transform translate-x-1/2 bg-white rounded-full py-3 px-6 shadow-lg">
-                    <p className="text-primary-700 font-bold">{doctor.experience} Experience</p>
-                  </div>
-                  
-                  <div className="absolute -bottom-4 left-0 transform -translate-x-1/3 bg-white rounded-full py-3 px-6 shadow-lg">
-                    <p className="text-primary-700 font-bold flex items-center">
-                      <BookOpen size={16} className="mr-2" />
-                      {doctor.education[0].institution}
-                    </p>
-                  </div>
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  <img 
+                    src={doctor.image} 
+                    alt={doctor.name} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                <div className="absolute -bottom-4 right-0 bg-white rounded-lg py-2 px-4 shadow-md">
+                  <p className="text-gray-700 text-sm font-medium flex items-center">
+                    <BookOpen size={14} className="mr-1" />
+                    {doctor.education[0].institution}
+                  </p>
                 </div>
               </motion.div>
             </div>
           </div>
-          
-          <motion.div 
-            animate={{ 
-              y: [0, 12, 0],
-            }}
-            transition={{ 
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: "loop"
-            }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-          >
-            <p className="text-gray-600 text-sm mb-2">Scroll for more</p>
-            <div className="w-6 h-10 border-2 border-primary-300 rounded-full flex justify-center">
-              <div className="w-2 h-2 bg-primary-500 rounded-full mt-2" />
-            </div>
-          </motion.div>
         </div>
       </section>
       
@@ -273,7 +210,7 @@ const DoctorProfile = () => {
       }`}>
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Avatar className="h-12 w-12 border-2 border-primary-100">
+            <Avatar className="h-12 w-12 border-2 border-primary-50">
               <AvatarImage src={doctor.image} alt={doctor.name} />
               <AvatarFallback>{doctor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
             </Avatar>
