@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -19,12 +18,12 @@ import {
   MessageSquare,
   CheckCircle, 
   ChevronRight, 
-  Calendar as CalendarIcon 
+  Calendar as CalendarIcon,
+  ArrowRight
 } from "lucide-react";
 import { motion } from "@/components/ui/motion";
 import AnimatedCard from "@/components/ui/AnimatedCard";
 
-// Sample doctor data - in a real app, this would come from an API
 const doctorsData = [
   {
     id: "1",
@@ -76,7 +75,6 @@ const DoctorProfile = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    // Simulate fetching doctor data
     setTimeout(() => {
       const foundDoctor = doctorsData.find(d => d.id === doctorId) || doctorsData[0];
       setDoctor(foundDoctor);
@@ -110,183 +108,166 @@ const DoctorProfile = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Hero Section - Immersive Split Screen */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] w-full mt-16">
-        {/* Background Image with Gradient Overlay */}
+      <section className="relative min-h-[90vh] w-full mt-16 overflow-hidden bg-gradient-to-br from-blue-50 to-white">
         <div className="absolute inset-0 z-0">
-          <div 
-            className="absolute inset-0 bg-gradient-to-r from-blue-950/80 via-blue-900/70 to-transparent"
-            style={{ zIndex: 1 }}
-          ></div>
-          <img 
-            src={doctor.backgroundImage} 
-            alt="Medical environment" 
-            className="w-full h-full object-cover"
-          />
+          <div className="absolute top-0 right-0 w-[65%] h-full bg-primary-600 skew-x-[-12deg] origin-top-right transform -translate-x-32"></div>
+          <div className="absolute bottom-0 left-0 w-2/3 h-24 bg-primary-100 skew-x-[-12deg] origin-bottom-left"></div>
         </div>
         
-        {/* Doctor Portrait - Positioned on the right */}
-        <div className="hidden md:block absolute right-0 top-0 bottom-0 w-[45%] z-0">
-          <div className="h-full relative">
-            <div className="absolute inset-0 bg-gradient-to-l from-blue-950/10 via-blue-900/30 to-transparent" style={{ zIndex: 1 }}></div>
-            <img 
-              src={doctor.image} 
-              alt={doctor.name} 
-              className="w-full h-full object-cover object-center"
-              style={{ maxHeight: "100%", objectFit: "cover" }}
-            />
+        <div className="absolute inset-0 opacity-10 z-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/2 h-full">
+            <div className="w-full h-full opacity-15">
+              {[...Array(10)].map((_, i) => (
+                <div 
+                  key={i}
+                  className="absolute rounded-full bg-white"
+                  style={{
+                    width: `${Math.random() * 300 + 50}px`,
+                    height: `${Math.random() * 300 + 50}px`,
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    opacity: 0.2
+                  }}
+                ></div>
+              ))}
+            </div>
           </div>
         </div>
         
-        {/* Overlay Content */}
-        <div className="relative z-10 container mx-auto px-4 md:px-8 h-full flex flex-col justify-center">
-          <div className="flex flex-col md:flex-row justify-between h-full">
-            {/* Left side - Doctor info */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="max-w-2xl py-10 md:py-24 flex flex-col justify-center"
-            >
-              <div className="md:hidden mb-8 mx-auto rounded-full border-4 border-white shadow-xl w-40 h-40 overflow-hidden">
-                <img 
-                  src={doctor.image} 
-                  alt={doctor.name} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="secondary" className="text-primary-600 bg-white/90 text-sm py-1 font-medium">
-                  {doctor.specialty}
-                </Badge>
-                <Badge variant="outline" className="text-white border-white/50 bg-white/10 text-sm py-1 font-medium">
-                  {doctor.experience} Experience
-                </Badge>
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-3">
-                {doctor.name}
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-white/90 mb-6">
-                {doctor.title}
-              </p>
-              
-              <p className="text-white/80 text-lg md:max-w-xl mb-8">
-                {doctor.bio.split('.')[0] + '.'}
-              </p>
-              
-              <div className="flex flex-wrap gap-4 mt-2">
-                <Button size="lg" className="gap-2" asChild>
-                  <Link to="/appointments">
-                    <CalendarIcon className="mr-1" size={20} />
-                    Book Appointment
-                  </Link>
-                </Button>
-                <Button variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 gap-2">
-                  <a href="#about">Learn More</a>
-                  <ChevronRight size={18} />
-                </Button>
-              </div>
-            </motion.div>
+        <div className="relative z-10 container mx-auto px-4 md:px-8 h-full flex flex-col justify-center py-12 lg:py-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
             
-            {/* Right side - Stats card */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="hidden md:flex md:items-center"
-            >
-              <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-xl w-80">
-                <CardContent className="p-6">
-                  <div className="space-y-4 text-white">
-                    <div className="flex items-center gap-3 py-2">
-                      <div className="p-2 rounded-full bg-primary-600/20">
-                        <User size={20} className="text-primary-100" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Patients Treated</p>
-                        <p className="text-2xl font-bold">5,000+</p>
-                      </div>
+            <div className="lg:col-span-6 z-10">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="space-y-6"
+              >
+                <div className="inline-block relative">
+                  <span className="absolute -left-4 -top-4 w-12 h-12 bg-primary-100 rounded-full"></span>
+                  <Badge variant="secondary" className="relative z-10 text-primary-700 font-semibold py-2 px-4 text-sm">
+                    {doctor.specialty} Specialist
+                  </Badge>
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight relative">
+                  {doctor.name}
+                  <span className="absolute -top-6 -left-6 text-9xl text-primary-50 font-bold z-[-1] opacity-80">Dr</span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-primary-700">
+                  {doctor.title}
+                </p>
+                
+                <div className="max-w-lg">
+                  <p className="text-gray-700 text-lg">
+                    {doctor.bio.split('.')[0] + '.'}
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
+                    <div className="p-2 rounded-full bg-primary-50">
+                      <Star size={24} className="text-yellow-500" />
                     </div>
-                    
-                    <div className="flex items-center gap-3 py-2">
-                      <div className="p-2 rounded-full bg-primary-600/20">
-                        <Stethoscope size={20} className="text-primary-100" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Years of Experience</p>
-                        <p className="text-2xl font-bold">{doctor.experience.replace('+', '')}</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-3 py-2">
-                      <div className="p-2 rounded-full bg-primary-600/20">
-                        <Star size={20} className="text-primary-100" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1">
-                          <p className="font-medium">Rating</p>
-                          <div className="flex ml-2">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                size={14}
-                                className={`${
-                                  i < Math.floor(doctor.rating)
-                                    ? "text-yellow-400 fill-yellow-400"
-                                    : "text-white/30"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                        <p className="text-2xl font-bold">{doctor.rating} <span className="text-sm font-normal">({doctor.totalReviews} reviews)</span></p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3 py-2">
-                      <div className="p-2 rounded-full bg-primary-600/20">
-                        <Award size={20} className="text-primary-100" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Awards</p>
-                        <p className="text-lg font-bold">{doctor.awards.length} Achievements</p>
-                      </div>
-                    </div>
+                    <p className="text-2xl font-bold mt-2">{doctor.rating}</p>
+                    <p className="text-sm text-gray-500">Rating</p>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                  
+                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
+                    <div className="p-2 rounded-full bg-primary-50">
+                      <User size={24} className="text-primary-600" />
+                    </div>
+                    <p className="text-2xl font-bold mt-2">5K+</p>
+                    <p className="text-sm text-gray-500">Patients</p>
+                  </div>
+                  
+                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
+                    <div className="p-2 rounded-full bg-primary-50">
+                      <Award size={24} className="text-primary-600" />
+                    </div>
+                    <p className="text-2xl font-bold mt-2">{doctor.awards.length}</p>
+                    <p className="text-sm text-gray-500">Awards</p>
+                  </div>
+                  
+                  <div className="p-4 rounded-lg bg-white shadow-md flex flex-col items-center">
+                    <div className="p-2 rounded-full bg-primary-50">
+                      <Stethoscope size={24} className="text-primary-600" />
+                    </div>
+                    <p className="text-2xl font-bold mt-2">{doctor.experience.replace('+', '')}</p>
+                    <p className="text-sm text-gray-500">Years</p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap gap-4 mt-6">
+                  <Button size="lg" className="gap-2 rounded-full px-8" asChild>
+                    <Link to="/appointments">
+                      <CalendarIcon className="mr-1" size={20} />
+                      Book Appointment
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="border-primary-200 text-primary-700 hover:bg-primary-50 gap-2 rounded-full px-8">
+                    <a href="#about">Doctor Profile</a>
+                    <ArrowRight size={18} />
+                  </Button>
+                </div>
+              </motion.div>
+            </div>
+            
+            <div className="lg:col-span-6 z-10 flex justify-center lg:justify-end">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="relative"
+              >
+                <div className="relative z-10">
+                  <div className="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden border-8 border-white shadow-xl relative z-10">
+                    <img 
+                      src={doctor.image} 
+                      alt={doctor.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-100 rounded-full z-0"></div>
+                  <div className="absolute -top-6 -left-6 w-16 h-16 bg-primary-200 rounded-full z-0"></div>
+                  
+                  <div className="absolute -top-4 right-0 transform translate-x-1/2 bg-white rounded-full py-3 px-6 shadow-lg">
+                    <p className="text-primary-700 font-bold">{doctor.experience} Experience</p>
+                  </div>
+                  
+                  <div className="absolute -bottom-4 left-0 transform -translate-x-1/3 bg-white rounded-full py-3 px-6 shadow-lg">
+                    <p className="text-primary-700 font-bold flex items-center">
+                      <BookOpen size={16} className="mr-2" />
+                      {doctor.education[0].institution}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
           
-          {/* Scroll indicator */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            animate={{ 
+              y: [0, 12, 0],
+            }}
+            transition={{ 
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop"
+            }}
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
           >
-            <p className="text-white/80 text-sm mb-2">Scroll for more</p>
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-              <motion.div 
-                animate={{ 
-                  y: [0, 12, 0],
-                }}
-                transition={{ 
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: "loop"
-                }}
-                className="w-2 h-2 bg-white rounded-full mt-2"
-              />
+            <p className="text-gray-600 text-sm mb-2">Scroll for more</p>
+            <div className="w-6 h-10 border-2 border-primary-300 rounded-full flex justify-center">
+              <div className="w-2 h-2 bg-primary-500 rounded-full mt-2" />
             </div>
           </motion.div>
         </div>
       </section>
       
-      {/* Quick Nav - Appears when scrolling */}
       <div className={`sticky top-16 z-30 transition-all duration-300 bg-white shadow-md ${
         scrolled ? "translate-y-0" : "-translate-y-20 opacity-0"
       }`}>
@@ -307,9 +288,7 @@ const DoctorProfile = () => {
         </div>
       </div>
       
-      {/* Main Content Section */}
       <main className="flex-grow bg-white">
-        {/* Doctor Tabs */}
         <section id="about" className="py-16 px-4 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <Tabs defaultValue="about" className="w-full" onValueChange={setActiveTab}>
@@ -321,7 +300,6 @@ const DoctorProfile = () => {
                 <TabsTrigger value="publications">Publications</TabsTrigger>
               </TabsList>
               
-              {/* About Tab */}
               <TabsContent value="about">
                 <AnimatedCard className="mb-12">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -400,7 +378,6 @@ const DoctorProfile = () => {
                 </AnimatedCard>
               </TabsContent>
               
-              {/* Specializations Tab */}
               <TabsContent value="specializations">
                 <AnimatedCard>
                   <h2 className="text-3xl font-bold text-gray-900 mb-8">Specialized Services</h2>
@@ -430,7 +407,6 @@ const DoctorProfile = () => {
                 </AnimatedCard>
               </TabsContent>
               
-              {/* Schedule Tab */}
               <TabsContent value="schedule">
                 <AnimatedCard>
                   <div className="max-w-4xl mx-auto">
@@ -497,7 +473,6 @@ const DoctorProfile = () => {
                 </AnimatedCard>
               </TabsContent>
               
-              {/* Reviews Tab */}
               <TabsContent value="reviews">
                 <AnimatedCard>
                   <div className="max-w-4xl mx-auto">
@@ -563,7 +538,6 @@ const DoctorProfile = () => {
                 </AnimatedCard>
               </TabsContent>
               
-              {/* Publications Tab */}
               <TabsContent value="publications">
                 <AnimatedCard>
                   <div className="max-w-4xl mx-auto">
@@ -599,7 +573,6 @@ const DoctorProfile = () => {
         </section>
       </main>
       
-      {/* Floating Appointment Button (Mobile) */}
       <div className="md:hidden fixed bottom-6 right-6 z-40">
         <Button size="lg" className="rounded-full h-14 w-14 p-0 shadow-lg" asChild>
           <Link to="/appointments">
